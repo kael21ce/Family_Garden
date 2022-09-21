@@ -3,6 +3,8 @@
 int pinTx = 5;
 int pinRx = 3;
 bool swit = true;
+
+///hi
  
 SoftwareSerial bluetooth(pinTx,pinRx);
  
