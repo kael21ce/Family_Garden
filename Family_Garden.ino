@@ -9,7 +9,7 @@ int pinRx = 3;
 const int LED = 6;
 int i = 0;
 //LED변수, MOTER변수 기본값 지정
-int LED = 255;
+int valLED = 255;
 int MOTER = 270;
  
 SoftwareSerial bluetooth(pinTx,pinRx);
@@ -43,87 +43,87 @@ void loop()
     Serial.println(ch);
     //앱에서 받아온 신호가 '1'이면 LED 밝기를 255/3으로 설정->1인데 왜 49라고 써놓음?->아스키코드 전환
     if (ch==49){
-      MOTER = LED; //모터변수에 LED변수 넣어주기
+      MOTER = valLED; //모터변수에 LED변수 넣어주기
       if (MOTER == 0) //모터변수=LED변수가 0이면
       {
         value = 0; // LED값이 0이면 모터가 90회전한 상태일 것으로 그대로 있기
         servo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
         delay(500);
-        LED=0;
+        valLED=0;
       } else if(MOTER == 255/3)
       {
         value = -90; // LED값이 255/3이면 모터가 180회전한 상태일 것으로 -90도 더 돌려서 90도로
         servo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
         delay(500);
-        for(i = LED ; i>=0 ; i--) // LED변수=255/3를 i에 넣고 0보다 같거나 클때까지 i를 (-)
+        for(i = valLED ; i>=0 ; i--) // LED변수=255/3를 i에 넣고 0보다 같거나 클때까지 i를 (-)
         {
           analogWrite(LED,i);
           delay(10);
         }
-        LED=0;
+        valLED=0;
       } else // MOTER==255
       {
         value = -180; // LED값이 255이면 모터가 270도 회전한 상태일 것으로 -180도 더 돌려서 90도로
         servo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
         delay(500);
-        for(i = LED ; i>=0 ; i--) // LED변수=255를 i에 넣고 0보다 같거나 클때까지 i를 (-)
+        for(i = valLED ; i>=0 ; i--) // LED변수=255를 i에 넣고 0보다 같거나 클때까지 i를 (-)
         {
           analogWrite(LED,i);
           delay(10);
         }
-        LED=0;
+        valLED=0;
       }
     } 
     else if(ch==50&ch=51){
-      MOTER = LED; //모터변수에 LED변수 넣어주기
+      MOTER = valLED; //모터변수에 LED변수 넣어주기
       if (MOTER == 255/3) //모터변수=LED변수가 255/3이면
       {
         value = 0; // LED값이 255/3이면 모터가 180도 회전한 상태일 것으로 그대로 있기
         servo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
         delay(500);
-        LED=255/3;
+        valLED=255/3;
       } else if(MOTER == 0)
       {
         value = 180; // LED값이 0이면 모터가 90도 회전한 상태일 것으로 90도 더 돌려서 180도로
         servo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
         delay(500);
-        for(i = LED ; i<=255/3 ; i++) // LED변수=0를 i에 넣고 255/3보다 같거나 작을때까지 i를 (+)
+        for(i = valLED ; i<=255/3 ; i++) // LED변수=0를 i에 넣고 255/3보다 같거나 작을때까지 i를 (+)
         {
           analogWrite(LED,i);
           delay(10);
         }
-        LED=255/3;
+        valLED=255/3;
       } else //MOTER==255
       {
         value = -90; // LED값이 255이면 모터가 270도 회전한 상태일 것으로 -90도 더 돌려서 180도로
         servo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
         delay(500);
-        for(i = LED ; i>=255/3 ; i--) // LED변수=255를 i에 넣고 255/3보다 같거나 클때까지 i를 (-)
+        for(i = valLED ; i>=255/3 ; i--) // LED변수=255를 i에 넣고 255/3보다 같거나 클때까지 i를 (-)
         {
           analogWrite(LED,i);
           delay(10);
         }
-        LED=255/3;
+        valLED=255/3;
       }
     }  else {   //ch==52&ch==53
-      MOTER = LED; //모터변수에 LED변수 넣어주기
+      MOTER = valLED; //모터변수에 LED변수 넣어주기
       if (MOTER == 255) //모터변수=LED변수가 255이면
       {
         value = 0; // LED값이 255이면 모터가 270도 회전한 상태일 것으로 그대로 있기
         servo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
         delay(500);
-        LED=255;
+        valLED=255;
       } else if(MOTER == 0)
       {
         value = 180; // LED값이 0이면 모터가 90도 회전한 상태일 것으로 180도 더 돌려서 270도로
         servo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
         delay(500);
-        for(i = LED ; i<=255 ; i++) // LED변수=0를 i에 넣고 255보다 같거나 작을때까지 i를 (+)
+        for(i = valLED ; i<=255 ; i++) // LED변수=0를 i에 넣고 255보다 같거나 작을때까지 i를 (+)
         {
           analogWrite(LED,i);
           delay(10);
         }
-        LED=255;
+        valLED=255;
       } else //MOTER==255/3
       {
         value = 90; // LED값이 255/3이면 모터가 180도 회전한 상태일 것으로 90도 더 돌려서 270도로
@@ -134,7 +134,7 @@ void loop()
           analogWrite(LED,i);
           delay(10);
         }
-        LED=255;
+        valLED=255;
       }
     }
   }
