@@ -104,7 +104,7 @@ void loop()
         }
         valLED=255/3;
       }
-    }  else {   //ch==52&ch==53
+    }  else {   //ch==52 || ch==53
       MOTER = valLED; //모터변수에 LED변수 넣어주기
       if (MOTER == 255) //모터변수=LED변수가 255이면
       {
