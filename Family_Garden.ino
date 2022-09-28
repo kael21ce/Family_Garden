@@ -41,9 +41,9 @@ void loop()
   }
   // 스위치 누르기 전엔 아무것도 안하기, 누르면 이거 시작(위에 추가 코드)
   int readValue = digitalRead(7); // 입력핀의 값(스위치)을 읽어 변수에 저장
-  Serial.println(readValue); // 변수의 값을 시리얼 모니터에 출력
+  //Serial.println(readValue); // 변수의 값을 시리얼 모니터에 출력
 
-  if(readValue == HIGH){
+  while(readValue == HIGH){//스위치가 아래로 내려가면
     //블루투스 통신 가능 시, 블루투스 통해 하드웨어로 통신
     if (bluetooth.available()) {
       //앱에서 받아온 신호 읽어오기
