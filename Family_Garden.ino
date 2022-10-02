@@ -96,7 +96,7 @@ void loop()
           valLED=255/3;
         } else if(MOTER == 0)
         {
-          value = 180; // LED값이 0이면 모터가 90도 회전한 상태일 것으로 90도 더 돌려서 180도로
+          value = 90; // LED값이 0이면 모터가 90도 회전한 상태일 것으로 90도 더 돌려서 180도로
           servo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
           delay(500);
           for(i = valLED ; i<=255/3 ; i++) // LED변수=0를 i에 넣고 255/3보다 같거나 작을때까지 i를 (+)
