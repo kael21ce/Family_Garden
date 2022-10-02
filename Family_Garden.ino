@@ -47,8 +47,8 @@ void loop()
     //블루투스 통신 가능 시, 블루투스 통해 하드웨어로 통신
     if (bluetooth.available()) {
       //앱에서 받아온 신호 읽어오기
-      //int ch = bluetooth.read();
-      int ch = 53;
+      int ch = bluetooth.read();
+      //int ch = 53;
       //신호 보여주기
       Serial.println(ch);
       //앱에서 받아온 신호가 '1'이면 LED 밝기를 255/3으로 설정->1인데 왜 49라고 써놓음?->아스키코드 전환
