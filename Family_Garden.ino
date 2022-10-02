@@ -10,11 +10,11 @@ const int LED1 = 6;
 int i = 0;
 //LED변수, MOTER변수 기본값 지정
 // <<<<<<< Updated upstream
-int valLED = 255;
+int valLED = 0;
 // =======
 int LED = LED1;
 // >>>>>>> Stashed changes
-int MOTER = 270;
+int MOTER = 0 ;
  
 SoftwareSerial bluetooth(pinTx,pinRx);
  
