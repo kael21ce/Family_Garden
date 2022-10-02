@@ -141,7 +141,7 @@ void loop()
           value = 90; // LED값이 255/3이면 모터가 180도 회전한 상태일 것으로 90도 더 돌려서 270도로
           servo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
           delay(500);
-          for(i = LED ; i<=255 ; i++) // LED변수=255를 i에 넣고 255보다 같거나 클때까지 i를 (+)
+          for(i = valLED ; i<=255 ; i++) // LED변수=255를 i에 넣고 255보다 같거나 클때까지 i를 (+)
           {
             analogWrite(LED,i);
             delay(10);
