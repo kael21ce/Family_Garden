@@ -12,7 +12,6 @@ int i = 0;
 // <<<<<<< Updated upstream
 int valLED = 0;
 // =======
-int LED = LED1;
 // >>>>>>> Stashed changes
 int MOTER = 0 ;
  
@@ -23,7 +22,7 @@ void setup()
 {
   pinMode(7,INPUT); // 스위치와 연결한 핀을 입력핀으로 설정
   //출력 핀 설정
-  pinMode(LED,OUTPUT);
+  pinMode(LED1,OUTPUT);
   //시리얼 통신 시작
   Serial.begin(9600);
   //블루투스 시리얼 통신 시작  
@@ -67,7 +66,7 @@ void loop()
           delay(500);
           for(i = valLED ; i>=0 ; i--) // LED변수=255/3를 i에 넣고 0보다 같거나 클때까지 i를 (-)
           {
-            analogWrite(LED,i);
+            analogWrite(LED1,i);
             delay(10);
           }
           valLED=0;
@@ -78,7 +77,7 @@ void loop()
           delay(500);
           for(i = valLED ; i>=0 ; i--) // LED변수=255를 i에 넣고 0보다 같거나 클때까지 i를 (-)
           {
-            analogWrite(LED,i);
+            analogWrite(LED1,i);
             delay(10);
           }
           valLED=0;
@@ -101,7 +100,7 @@ void loop()
           delay(500);
           for(i = valLED ; i<=255/3 ; i++) // LED변수=0를 i에 넣고 255/3보다 같거나 작을때까지 i를 (+)
           {
-            analogWrite(LED,i);
+            analogWrite(LED1,i);
             delay(10);
           }
           valLED=255/3;
@@ -112,7 +111,7 @@ void loop()
           delay(500);
           for(i = valLED ; i>=255/3 ; i--) // LED변수=255를 i에 넣고 255/3보다 같거나 클때까지 i를 (-)
           {
-            analogWrite(LED,i);
+            analogWrite(LED1,i);
             delay(10);
           }
           valLED=255/3;
@@ -132,7 +131,7 @@ void loop()
           delay(500);
           for(i = valLED ; i<=255 ; i++) // LED변수=0를 i에 넣고 255보다 같거나 작을때까지 i를 (+)
           {
-            analogWrite(LED,i);
+            analogWrite(LED1,i);
             delay(10);
           }
           valLED=255;
@@ -143,7 +142,7 @@ void loop()
           delay(500);
           for(i = valLED ; i<=255 ; i++) // LED변수=255를 i에 넣고 255보다 같거나 클때까지 i를 (+)
           {
-            analogWrite(LED,i);
+            analogWrite(LED1,i);
             delay(10);
           }
           valLED=255;
