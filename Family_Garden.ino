@@ -84,12 +84,9 @@ void loop()
           valLED=0;
         }
 //  <<<<<<< Updated upstream
-      } else if (ch==50 || ch==51){
+      }
+      else if(ch==50 || ch==51){
         MOTER = valLED; //모터변수에 LED변수 넣어주기
-//  =======
-      } 
-      else if(ch==50&ch==51){
-        MOTER = LED; //모터변수에 LED변수 넣어주기
 //  >>>>>>> Stashed changes
         if (MOTER == 255/3) //모터변수=LED변수가 255/3이면
         {
