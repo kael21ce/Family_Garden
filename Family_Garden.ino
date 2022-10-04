@@ -10,6 +10,12 @@ int pinTx = 2;
 int pinRx = 3;
 const int LED1 = 6;
 int i = 0;
+//LED변수, MOTER변수 기본값 지정
+// <<<<<<< Updated upstream
+int valLED = 0;
+// =======
+// >>>>>>> Stashed changes
+int MOTER = 0 ;
 
  
 SoftwareSerial bluetooth(pinTx,pinRx);
@@ -31,30 +37,22 @@ void setup()
  
  
 void loop()
-{ 
-  //LED변수, MOTER변수 기본값 지정
-  // <<<<<<< Updated upstream
-  int valLED = 0;
-  // =======
-  // >>>>>>> Stashed changes
-  int MOTER = 0 ;
-  //시리얼 통신 가능 시, 블루투스 통해 앱으로 통신
+{ //시리얼 통신 가능 시, 블루투스 통해 앱으로 통신
   if (Serial.available()) {
     bluetooth.write(Serial.read());
   }
   // 스위치 누르기 전엔 아무것도 안하기, 누르면 이거 시작(위에 추가 코드)
   int readValue = digitalRead(7); // 입력핀의 값(스위치)을 읽어 변수에 저장
   //Serial.println(readValue); // 변수의 값을 시리얼 모니터에 출력
-
-  while(readValue == HIGH){//스위치가 아래로 내려가면
-    //블루투스 통신 가능 시, 블루투스 통해 하드웨어로 통신
-    if (bluetooth.available()) {
-      //앱에서 받아온 신호 읽어오기
-      int ch = bluetooth.read();
-      //int ch = 53;
-      //신호 보여주기
-      Serial.println(ch);
-      //앱에서 받아온 신호가 '1'이면 LED 밝기를 255/3으로 설정->1인데 왜 49라고 써놓음?->아스키코드 전환
+  //블루투스 통신 가능 시, 블루투스 통해 하드웨어로 통신
+  if (bluetooth.available()) {
+    //앱에서 받아온 신호 읽어오기
+    int ch = bluetooth.read();
+    //int ch = 53;
+    //신호 보여주기
+    Serial.println(ch);
+    //앱에서 받아온 신호가 '1'이면 LED 밝기를 255/3으로 설정->1인데 왜 49라고 써놓음?->아스키코드 전환
+   while(readValue == HIGH){//스위치가 아래로 내려가면
       if (ch==49){
         MOTER = valLED; //모터변수에 LED변수 넣어주기
         if (MOTER == 0) //모터변수=LED변수가 0이면
