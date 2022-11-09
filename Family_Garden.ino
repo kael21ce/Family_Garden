@@ -81,7 +81,8 @@ void loop(){
     Serial.println(userName);
     //앱에서 받아온 신호가 '1'이면 LED 밝기를 255/3으로 설정->1인데 왜 49라고 써놓음?->아스키코드 전환
    while(readValue == HIGH){//스위치가 아래로 내려가면
-      if (expression.equals('1')){
+      if (expression.equals("1")){
+        Serial.println(expression);
         MOTER = valLED; //모터변수에 LED변수 넣어주기
         if (MOTER == 0) //모터변수=LED변수가 0이면
         {
@@ -114,7 +115,8 @@ void loop(){
         valLED=0;
 //  <<<<<<< Updated upstream
       }
-      else if(expression.equals('2') || expression.equals('3')){
+      else if(expression.equals("2") || expression.equals("3")){
+        Serial.println(expression);
         MOTER = valLED; //모터변수에 LED변수 넣어주기
 //  >>>>>>> Stashed changes
         if (MOTER == 255/3) //모터변수=LED변수가 255/3이면
@@ -146,7 +148,8 @@ void loop(){
           }
         }
         valLED=255/3;
-      }  else if(expression.equals('4') || expression.equals('5')){
+      }  else if(expression.equals("4") || expression.equals("5")){
+        Serial.println(expression);                                                                                                                                                  
         MOTER = valLED; //모터변수에 LED변수 넣어주기
         if (MOTER == 255) //모터변수=LED변수가 255이면
         {
