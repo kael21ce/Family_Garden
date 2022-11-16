@@ -92,7 +92,7 @@ void loop(){
           //delay(15);
         } else if(MOTER == 255/3)
         {
-          for(value = 90; value >= 0 ; value--){ // LED값이 255/3이면 모터가 90회전한 상태일 것으로 -90도 더 돌려서 0도로
+          for(value = 45; value >= 0 ; value--){ // LED값이 255/3이면 모터가 45회전한 상태일 것으로 -45도 더 돌려서 0도로
             myservo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
             delay(15);
           }
@@ -102,7 +102,7 @@ void loop(){
             delay(10);
           }
         } else if(MOTER==255){
-          for(value = 180 ; value >= 0 ; value--){ // LED값이 255이면 모터가 180도 회전한 상태일 것으로 -180도 더 돌려서 0도로
+          for(value = 90 ; value >= 0 ; value--){ // LED값이 255이면 모터가 90도 회전한 상태일 것으로 -90도 더 돌려서 0도로
             myservo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
             delay(15);
           }
@@ -122,12 +122,12 @@ void loop(){
         if (MOTER == 255/3) //모터변수=LED변수가 255/3이면
         {
           break;
-          //value = 0; // LED값이 255/3이면 모터가 180도 회전한 상태일 것으로 그대로 있기
+          //value = 0; // LED값이 255/3이면 모터가 45도 회전한 상태일 것으로 그대로 있기
           //myservo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
           //delay(15);
         } else if(MOTER == 0)
         {
-          for(value = 0; value <= 90 ; value++ ){ // LED값이 0이면 모터가 90도 회전한 상태일 것으로 90도 더 돌려서 180도로
+          for(value = 0; value <= 45 ; value++ ){ // LED값이 0이면 모터가 0도 회전한 상태일 것으로 45도 더 돌려서 45도로
             myservo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
             delay(15);
           }
@@ -137,7 +137,7 @@ void loop(){
             delay(10);
           }
         } else if(MOTER==255){
-          for(value = 180; value >= 90 ; value-- ){ // LED값이 255이면 모터가 180도 회전한 상태일 것으로 -90도 더 돌려서 90도로
+          for(value = 90; value >= 45 ; value-- ){ // LED값이 255이면 모터가 90도 회전한 상태일 것으로 -45도 더 돌려서 45도로
             myservo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
             delay(15);
           }
@@ -154,12 +154,12 @@ void loop(){
         if (MOTER == 255) //모터변수=LED변수가 255이면
         {
           break;
-          //value = 0; // LED값이 255이면 모터가 180도 회전한 상태일 것으로 그대로 있기
+          //value = 0; // LED값이 255이면 모터가 90도 회전한 상태일 것으로 그대로 있기
           //myservo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
           //delay(15);
           } else if(MOTER == 0)
         {
-          for(value = 0; value <= 180 ; value++ ){ // LED값이 0이면 모터가 0도 회전한 상태일 것으로 180도 더 돌려서 180도로
+          for(value = 0; value <= 90 ; value++ ){ // LED값이 0이면 모터가 0도 회전한 상태일 것으로 90도 더 돌려서 90도로
             myservo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
             delay(15);
           }
@@ -169,7 +169,7 @@ void loop(){
             delay(10);
           }
         } else if(MOTER ==255/3){
-          for(value = 90 ; value <= 180 ; value++ ){ // LED값이 255/3이면 모터가 90도 회전한 상태일 것으로 90도 더 돌려서 180도로
+          for(value = 45 ; value <= 90 ; value++ ){ // LED값이 255/3이면 모터가 45도 회전한 상태일 것으로 45도 더 돌려서 90도로
             myservo.write(value); //value값의 각도로 회전. ex) value가 90이라면 90도 회전
             delay(15);
           }
