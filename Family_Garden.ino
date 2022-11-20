@@ -28,6 +28,8 @@ int valLED = 0;
 // >>>>>>> Stashed changes
 int MOTER = 0 ;
 
+int readValue=0;
+
  
 SoftwareSerial bluetooth(pinTx,pinRx);
  
@@ -50,37 +52,47 @@ void setup()
  
  
 void loop(){
-  //시리얼 통신 가능 시, 블루투스 통해 앱으로 통신
-  if (Serial.available()) {
-    bluetooth.write(Serial.read());
-  }
-  // 스위치 누르기 전엔 아무것도 안하기, 누르면 이거 시작(위에 추가 코드)
-  int readValue = digitalRead(7); // 입력핀의 값(스위치)을 읽어 변수에 저장
-  //Serial.println(readValue); // 변수의 값을 시리얼 모니터에 출력
+  readValue = digitalRead(7); // 입력핀의 값(스위치)을 읽어 변수에 저장
 
-  u8g2.setFont(u8g2_font_unifont_t_korean1);
-  u8g2.setFontDirection(0);
-  u8g2.firstPage();
+  while(readValue == LOW){
+    readValue = digitalRead(7); // 입력핀의 값(스위치)을 읽어 변수에 저장
+    analogWrite(LED1,0); // LED가 0
+    myservo.write(0); //모터가 0
+    u8g2.clear(); // OLED 초기화
+  }
   
-  //블루투스 통신 가능 시, 블루투스 통해 하드웨어로 통신
-  if (bluetooth.available()) {
-    //앱에서 받아온 신호 읽어오기
-    String inString = bluetooth.readString(); // 블루투스로 들어온 신호 문자열로 받기
-    int index1 = inString.indexOf(',');
-    int index2 = inString.length();
-    String expression = inString.substring(0, index1);
-    String userName = inString.substring(index1+1, index2);
-    u8g2.clear(); //OLED 클리어
-    do {
-      u8g2.setCursor(10, 20);
-      u8g2.print(userName); // OLED에 블루투스로 들어온 문자열 출력
-    } while ( u8g2.nextPage() );
+  while(readValue == HIGH){//스위치가 아래로 내려가면
+     readValue = digitalRead(7); // 입력핀의 값(스위치)을 읽어 변수에 저장
+
+    //시리얼 통신 가능 시, 블루투스 통해 앱으로 통신
+    if (Serial.available()) {
+      bluetooth.write(Serial.read());
+    }
+    // 스위치 누르기 전엔 아무것도 안하기, 누르면 이거 시작(위에 추가 코드)
+    //Serial.println(readValue); // 변수의 값을 시리얼 모니터에 출력
+
+    u8g2.setFont(u8g2_font_unifont_t_korean1);
+    u8g2.setFontDirection(0);
+    u8g2.firstPage();
     
-    //신호 보여주기
-    Serial.println(expression);
-    Serial.println(userName);
-    //앱에서 받아온 신호가 '1'이면 LED 밝기를 255/3으로 설정->1인데 왜 49라고 써놓음?->아스키코드 전환
-   while(readValue == HIGH){//스위치가 아래로 내려가면
+    //블루투스 통신 가능 시, 블루투스 통해 하드웨어로 통신
+    if (bluetooth.available()) {
+      //앱에서 받아온 신호 읽어오기
+      String inString = bluetooth.readString(); // 블루투스로 들어온 신호 문자열로 받기
+      int index1 = inString.indexOf(',');
+      int index2 = inString.length();
+      String expression = inString.substring(0, index1);
+      String userName = inString.substring(index1+1, index2);
+      u8g2.clear(); //OLED 클리어
+      do {
+        u8g2.setCursor(10, 20);
+        u8g2.print(userName); // OLED에 블루투스로 들어온 문자열 출력
+      } while ( u8g2.nextPage() );
+      
+      //신호 보여주기
+      Serial.println(expression);
+      Serial.println(userName);
+      //앱에서 받아온 신호가 '1'이면 LED 밝기를 255/3으로 설정->1인데 왜 49라고 써놓음?->아스키코드 전환
       if (expression.equals("1")){
         Serial.println(expression);
         MOTER = valLED; //모터변수에 LED변수 넣어주기
@@ -113,12 +125,12 @@ void loop(){
           }
         }
         valLED=0;
-//  <<<<<<< Updated upstream
+  //  <<<<<<< Updated upstream
       }
       else if(expression.equals("2") || expression.equals("3")){
         Serial.println(expression);
         MOTER = valLED; //모터변수에 LED변수 넣어주기
-//  >>>>>>> Stashed changes
+  //  >>>>>>> Stashed changes
         if (MOTER == 255/3) //모터변수=LED변수가 255/3이면
         {
           break;
